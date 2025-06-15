@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // Buscar al usuario en la base de datos
-    $sql = "SELECT id, nombre_usuario, password FROM usuarios WHERE nombre_usuario = :nombre_usuario";
+    $sql = "SELECT id, nombre_usuario, password, avatar FROM usuarios WHERE nombre_usuario = :nombre_usuario";
     $stmt = $conexion->prepare($sql);
     $stmt->bindParam(':nombre_usuario', $nombre_usuario);
     $stmt->execute();
@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // La contraseña es correcta, iniciar sesión
         $_SESSION['user_id'] = $usuario['id'];
         $_SESSION['username'] = $usuario['nombre_usuario'];
+        $_SESSION['avatar'] = $usuario['avatar'];
 
         // Redirigir al dashboard
         header('Location: dashboard.php');

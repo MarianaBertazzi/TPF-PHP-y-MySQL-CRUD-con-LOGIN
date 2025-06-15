@@ -29,9 +29,16 @@ if (session_status() === PHP_SESSION_NONE) {
       <ul class="navbar-nav ms-auto">
         <?php if (isset($_SESSION['user_id'])): ?>
             <!-- Si la variable de sesión 'user_id' EXISTE, significa que el usuario inició sesión. -->
-            <li class="nav-item">
-              <!-- htmlspecialchars() es una función de seguridad para evitar que código malicioso se muestre en la página. -->
-              <a class="nav-link">Hola, <?php echo htmlspecialchars($_SESSION['username']); ?></a>
+            <li class="nav-item d-flex align-items-center">
+              <img src="public/uploads/avatars/<?php echo htmlspecialchars($_SESSION['avatar']); ?>" 
+                alt="Avatar" 
+                width="30" 
+                height="30" 
+                class="rounded-circle me-2">
+              <span class="navbar-text">
+                <!-- htmlspecialchars() es una función de seguridad para evitar que código malicioso se muestre en la página. -->
+                Hola, <?php echo htmlspecialchars($_SESSION['username']); ?>
+              </span>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="logout.php">Cerrar Sesión</a>
